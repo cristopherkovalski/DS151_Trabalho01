@@ -1,15 +1,27 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from '/src/components/HomeScreen';
+import CountriesList from './src/components/CountriesList';
+import CountryDetails from './src/components/CountryDetails';
+import CountryImages from './src/components/CountryImages';
+
+    const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }} />
+        <Stack.Screen name="CountriesList" component={CountriesList} options={{ title: 'Buscar País' }} />
+        <Stack.Screen name="CountryDetails" component={CountryDetails} options={{ title: 'Detalhes do País' }} />
+        <Stack.Screen name="CountryImages" component={CountryImages} options={{title: 'Imagens do País'}} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
